@@ -33,4 +33,9 @@ use Symfony\Component\HttpFoundation\Request as BaseRequest;
     {
         return $this->query->all();
     }
+
+    public static function createFromRequest(BaseRequest $request)
+    {
+        return new static($request->query->all(), $request->request->all(), $request->attributes->all(), $request->cookies->all(), $request->files->all(), $request->server->all(), $request->getContent());
+    }
  }

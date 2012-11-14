@@ -23,3 +23,14 @@ Creating the response object is the same as before, except now you use the
 
     $request = OAuth2\HttpFoundationBridge\Request::createFromGlobals();
     $app->run($request);
+
+If the HttpFoundation request already exists, you can use the static `createFromRequest`
+function to build the OAuth2\HttpFoundationBridge\Request instance:
+
+    $request = Symfony\Component\HttpFoundation\Request::createFromGlobals();
+    $bridgeRequest = OAuth2\HttpFoundationBridge\Request::createFromRequest($request);
+
+Contact
+-------
+
+Please contact Brent Shaffer (bshafs <at> gmail <dot> com) for more information
