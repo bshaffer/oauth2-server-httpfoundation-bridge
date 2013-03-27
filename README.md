@@ -5,7 +5,7 @@ A bridge to HttpFoundation for oauth2-server-php.
 
 oauth2-server-httpfoundation-bridge is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
 which returns HttpFoundation\Response instead of OAuth2_Response, and uses HttpFoundation\Request instead of OAuth2_Request.
-If you are integrating oauth2 into a silex or symfony app, (or any app using HttpFoundation), this will make your
+If you are integrating oauth2 into a Silex, symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using HttpFoundation), this will make your
 application much cleaner
 
 ## Creating the Server
