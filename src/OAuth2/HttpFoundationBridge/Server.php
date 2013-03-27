@@ -9,9 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
  */
  class Server extends \OAuth2_Server
  {
-    public function handleGrantRequest(\OAuth2_RequestInterface $request)
+    public function handleTokenRequest(\OAuth2_RequestInterface $request)
     {
-        $response =  parent::handleGrantRequest($request);
+        $response =  parent::handleTokenRequest($request);
         return $this->createResponse($response);
     }
 
