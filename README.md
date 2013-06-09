@@ -14,7 +14,7 @@ Creating the server is no different from before, except that you use the `OAuth2
 class instead of OAuth2_Server:
 
     $server = new OAuth2\HttpFoundationBridge\Server($app['oauth_storage']);
-    $server->addGrantType(new OAuth2_GrantType_AuthorizationCode($app['oauth_storage']));
+    $server->addGrantType(new OAuth2\GrantType\AuthorizationCode($app['oauth_storage']));
     ...
 
 Now, when you call any of the `handle*Request` methods, or call `getResponse`, the object returned will be an

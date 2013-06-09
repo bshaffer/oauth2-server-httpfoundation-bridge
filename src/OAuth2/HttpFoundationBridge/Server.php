@@ -3,19 +3,22 @@
 namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use OAuth2\Server as OAuth2Server;
+use OAuth2\RequestInterface;
+use OAuth2\ResponseInterface;
 
 /**
  *
  */
- class Server extends \OAuth2_Server
+ class Server extends OAuth2Server
  {
-    public function handleTokenRequest(\OAuth2_RequestInterface $request)
+    public function handleTokenRequest(RequestInterface $request)
     {
         $response =  parent::handleTokenRequest($request);
         return $this->createResponse($response);
     }
 
-    public function handleAuthorizeRequest(\OAuth2_RequestInterface $request, $is_authorized, $user_id = null)
+    public function handleAuthorizeRequest(RequestInterface $request, $is_authorized, $user_id = null)
     {
         $response = parent::handleAuthorizeRequest($request, $is_authorized, $user_id);
         return $this->createResponse($response);
@@ -26,7 +29,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
         return $this->createResponse(parent::getResponse());
     }
 
-    private function createResponse(\OAuth2_Response $response)
+    private function createResponse(ResponseInterface $response)
     {
         return new JsonResponse($response->getParameters(), $response->getStatusCode(), $response->getHttpHeaders());
     }
