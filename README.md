@@ -8,25 +8,6 @@ which returns HttpFoundation\Response instead of OAuth2_Response, and uses HttpF
 If you are integrating oauth2 into a Silex, symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using HttpFoundation), this will make your
 application much cleaner
 
-## Creating the Server
-
-Creating the server is no different from before, except that you use the `OAuth2\HttpFoundationBridge\Server`
-class instead of OAuth2_Server:
-
-    $server = new OAuth2\HttpFoundationBridge\Server($app['oauth_storage']);
-    $server->addGrantType(new OAuth2_GrantType_AuthorizationCode($app['oauth_storage']));
-    ...
-
-Now, when you call any of the `handle*Request` methods, or call `getResponse`, the object returned will be an
-instance of `Symfony\Component\HttpFoundation\Response`:
-
-    if (!$token = $server->grantAccessToken($request)) {
-        $response = $server->getResponse();
-        if ($response->isSuccessful()) {
-            // isSuccessful is unique to HttpFoundation
-        }
-    }
-
 ## Creating the request
 
 Creating the response object is the same as before, except now you use the
@@ -51,10 +32,29 @@ function to build the OAuth2\HttpFoundationBridge\Request instance:
     // in your controller layer, the $request object is passed in
     public function execute(Request $request)
     {
+        //... (instantiate server/response objects)
         $bridgeRequest = BridgeRequest::createFromRequest($request);
-        $server->grantAccessToken($request);
+        $server->grantAccessToken($request, $response);
     }
 
+## Creating the response
+
+The `OAuth2\HttpFoundationBridge\Response` object extends `Symfony\Component\HttpFoundation\JsonResponse`,
+and implements the `OAuth2_ResponseInterface`, allowing you to pass this in and return it from your controllers.
+In Symfony and Silex, this will be all that is needed to integrate the server:
+
+    use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
+
+    // in your controller layer, the $request object is passed in
+    public function execute(Request $request)
+    {
+        //... (instantiate server/response objects)
+        $response = new BridgeResponse();
+        return $server->handleTokenRequest($request, $response);
+    }
+
+> Note: this object will return JSON.  Implement your own class using `OAuth2_ResponseInterface` to support
+> a different content-type.
 
 Contact
 -------
