@@ -5,8 +5,28 @@ A bridge to HttpFoundation for oauth2-server-php.
 
 oauth2-server-httpfoundation-bridge is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
 which returns HttpFoundation\Response instead of OAuth2_Response, and uses HttpFoundation\Request instead of OAuth2_Request.
-If you are integrating oauth2 into a Silex, symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using HttpFoundation), this will make your
+If you are integrating oauth2 into a Silex, Symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using HttpFoundation), this will make your
 application much cleaner
+
+Installation
+------------
+
+[Composer](http://getcomposer.org/) is the best way to install this library.  Add this line to composer.json:
+
+```
+{
+    "require": {
+        "bshaffer/oauth2-server-httpfoundation-bridge": "v0.9",
+        ...
+    },
+    ...
+}
+```
+
+And then run `composer.phar install`
+
+> Match tags with the [oauth2-server-php](https://github.com/bshaffer/oauth2-server) library when possible.
+> [`v0.9`](https://github.com/bshaffer/oauth2-server-httpfoundation-bridge/tree/v0.9) is the latest tag.
 
 ## Creating the request
 
