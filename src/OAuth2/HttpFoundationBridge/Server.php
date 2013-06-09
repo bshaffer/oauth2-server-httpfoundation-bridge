@@ -2,7 +2,7 @@
 
 namespace OAuth2\HttpFoundationBridge;
 
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  *
@@ -28,6 +28,6 @@ use Symfony\Component\HttpFoundation\Response;
 
     private function createResponse(\OAuth2_Response $response)
     {
-        return new Response($response->getResponseBody(), $response->getStatusCode(), $response->getHttpHeaders());
+        return new JsonResponse($response->getParameters(), $response->getStatusCode(), $response->getHttpHeaders());
     }
  }
