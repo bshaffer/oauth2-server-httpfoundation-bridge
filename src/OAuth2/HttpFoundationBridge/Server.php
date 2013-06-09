@@ -9,15 +9,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
  class Server extends \OAuth2_Server
  {
-    public function handleTokenRequest(\OAuth2_RequestInterface $request)
+    public function handleTokenRequest(\OAuth2_RequestInterface $request, \OAuth2_ResponseInterface $response)
     {
-        $response =  parent::handleTokenRequest($request);
+        parent::handleTokenRequest($request, $response);
         return $this->createResponse($response);
     }
 
-    public function handleAuthorizeRequest(\OAuth2_RequestInterface $request, $is_authorized, $user_id = null)
+    public function handleAuthorizeRequest(\OAuth2_RequestInterface $request, \OAuth2_ResponseInterface $response, $is_authorized, $user_id = null)
     {
-        $response = parent::handleAuthorizeRequest($request, $is_authorized, $user_id);
+        $response = parent::handleAuthorizeRequest($request, $response, $is_authorized, $user_id);
         return $this->createResponse($response);
     }
 
