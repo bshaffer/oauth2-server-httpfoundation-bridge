@@ -56,6 +56,13 @@ In Symfony and Silex, this will be all that is needed to integrate the server:
 > Note: this object will return JSON.  Implement your own class using `OAuth2_ResponseInterface` to support
 > a different content-type.
 
+## Examples
+
+ * OAuth2 Request
+ ** [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/web/index.php#L47)
+ * OAuth2 Response
+ ** [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/src/OAuth2Demo/Server/Controllers/Token.php#L26)
+
 Contact
 -------
 
