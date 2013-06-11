@@ -3,7 +3,6 @@
 namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-use OAuth2_ResponseInterface;
 
 /**
  *
