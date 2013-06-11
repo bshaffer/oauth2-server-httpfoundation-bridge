@@ -28,6 +28,13 @@ use OAuth2_ResponseInterface;
         }
     }
 
+    public function getParameter($name)
+    {
+        if ($this->content && $data = json_decode($this->content, true)) {
+            return isset($data[$name]) ? $data[$name] : null;
+        }
+    }
+
     public function setError($statusCode, $name, $description = null, $uri = null)
     {
         $this->setStatusCode($statusCode);
