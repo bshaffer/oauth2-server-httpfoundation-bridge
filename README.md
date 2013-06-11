@@ -30,7 +30,7 @@ And then run `composer.phar install`
 
 ## Creating the request
 
-Creating the response object is the same as before, except now you use the
+Creating the request object is the same as before, except now you use the
 `OAuth2\HttpFoundationBridge\Request` class:
 
     $request = OAuth2\HttpFoundationBridge\Request::createFromGlobals();
@@ -79,9 +79,9 @@ In Symfony and Silex, this will be all that is needed to integrate the server:
 ## Examples
 
  * OAuth2 Request
- ** [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/web/index.php#L47)
+   * [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/web/index.php#L47)
  * OAuth2 Response
- ** [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/src/OAuth2Demo/Server/Controllers/Token.php#L26)
+   * [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/src/OAuth2Demo/Server/Controllers/Token.php#L26)
 
 Contact
 -------
