@@ -3,11 +3,12 @@
 namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use OAuth2\ResponseInterface;
 
 /**
  *
  */
- class Response extends JsonResponse implements \OAuth2_ResponseInterface
+ class Response extends JsonResponse implements ResponseInterface
  {
     public function addParameters(array $parameters)
     {
