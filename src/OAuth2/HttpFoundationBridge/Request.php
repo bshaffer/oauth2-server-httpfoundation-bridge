@@ -3,11 +3,12 @@
 namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\Request as BaseRequest;
+use OAuth2\RequestInterface;
 
 /**
  *
  */
- class Request extends BaseRequest implements \OAuth2_RequestInterface
+ class Request extends BaseRequest implements RequestInterface
  {
     public function query($name, $default = null)
     {

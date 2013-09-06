@@ -4,7 +4,7 @@ oauth2-server-httpfoundation-bridge
 A bridge to HttpFoundation for oauth2-server-php.
 
 oauth2-server-httpfoundation-bridge is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
-which returns HttpFoundation\Response instead of OAuth2_Response, and uses HttpFoundation\Request instead of OAuth2_Request.
+which returns HttpFoundation\Response instead of OAuth2\Response, and uses HttpFoundation\Request instead of OAuth2\Request.
 If you are integrating oauth2 into a Silex, Symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using HttpFoundation), this will make your
 application much cleaner
 
@@ -60,7 +60,7 @@ function to build the OAuth2\HttpFoundationBridge\Request instance:
 ## Creating the response
 
 The `OAuth2\HttpFoundationBridge\Response` object extends `Symfony\Component\HttpFoundation\JsonResponse`,
-and implements the `OAuth2_ResponseInterface`, allowing you to pass this in and return it from your controllers.
+and implements `OAuth2\ResponseInterface`, allowing you to pass this in and return it from your controllers.
 In Symfony and Silex, this will be all that is needed to integrate the server:
 
     use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
@@ -73,7 +73,7 @@ In Symfony and Silex, this will be all that is needed to integrate the server:
         return $server->handleTokenRequest($request, $response);
     }
 
-> Note: this object will return JSON.  Implement your own class using `OAuth2_ResponseInterface` to support
+> Note: this object will return JSON.  Implement your own class using `OAuth2\ResponseInterface` to support
 > a different content-type.
 
 ## Examples
