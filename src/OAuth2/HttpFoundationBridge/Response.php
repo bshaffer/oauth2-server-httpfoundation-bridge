@@ -53,6 +53,9 @@ use OAuth2\ResponseInterface;
             'error_description' => $errorDescription,
             'error_uri'         => $errorUri,
         )));
+        $parts = parse_url($url);
+        $sep = isset($parts['query']) && count($parts['query']) > 0 ? '&' : '?';
+        $url .= $sep . http_build_query(json_decode($this->content, true));
         $this->headers->set('Location', $url);
     }
  }
