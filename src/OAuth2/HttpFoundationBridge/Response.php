@@ -65,7 +65,7 @@ use OAuth2\ResponseInterface;
             $url['query']['error_uri'] = $errorUri;
         }
 
-        $redirect = sprintf( '%s://%s%s', $url['scheme'], $url['host'], $url['path'] );
+        $redirect = sprintf('%s://%s%s', $url['scheme'], $url['host'], isset($url['path']) ? $url['path'] : '');
         if ($query = http_build_query($url['query'])) {
             $redirect .= '?'.$query;
         }
