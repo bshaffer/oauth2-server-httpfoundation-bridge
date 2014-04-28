@@ -47,29 +47,20 @@ use OAuth2\ResponseInterface;
 
     public function setRedirect($statusCode = 302, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
     {
-        $url = parse_url($url);
-        parse_str(isset($url['query']) ? $url['query'] : '', $url['query']);
-
         $this->setStatusCode($statusCode);
         $this->setContent(null);
 
-        if ($error) {
-            $url['query']['error'] = $error;
+        $query = array(
+            'state'             => $state,
+            'error'             => $error,
+            'error_description' => $errorDescription,
+            'error_uri'         => $errorUri
+        );
+
+        if ($queryStr = http_build_query(array_filter($query))) {
+            $url .= (false === strpos($url, '?') ? '?' : '&').$queryStr;
         }
 
-        if ($errorDescription) {
-            $url['query']['error_description'] = $errorDescription;
-        }
-
-        if ($error) {
-            $url['query']['error_uri'] = $errorUri;
-        }
-
-        $redirect = sprintf('%s://%s%s', $url['scheme'], $url['host'], isset($url['path']) ? $url['path'] : '');
-        if ($query = http_build_query($url['query'])) {
-            $redirect .= '?'.$query;
-        }
-
-        $this->headers->set('Location', $redirect);
+        $this->headers->set('Location', $url);
     }
  }
