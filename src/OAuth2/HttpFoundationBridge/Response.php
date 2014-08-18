@@ -21,6 +21,11 @@ use OAuth2\ResponseInterface;
         $this->setData($parameters);
     }
 
+    public function setParameters(array $parameters)
+    {
+        $this->setData($parameters);
+    }
+
     public function addHttpHeaders(array $httpHeaders)
     {
         foreach ($httpHeaders as $key => $value) {
