@@ -54,7 +54,7 @@ function to build the OAuth2\HttpFoundationBridge\Request instance:
     {
         //... (instantiate server/response objects)
         $bridgeRequest = BridgeRequest::createFromRequest($request);
-        $server->grantAccessToken($request, $response);
+        $server->grantAccessToken($bridgeRequest, $response);
     }
 
 ## Creating the response
