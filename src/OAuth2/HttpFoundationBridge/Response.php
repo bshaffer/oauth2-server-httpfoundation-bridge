@@ -48,11 +48,19 @@ use OAuth2\ResponseInterface;
     public function setRedirect($statusCode = 302, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
     {
         $this->setStatusCode($statusCode);
-        $this->addParameters(array_filter(array(
+        $this->setContent(null);
+
+        $query = array(
+            'state'             => $state,
             'error'             => $error,
             'error_description' => $errorDescription,
-            'error_uri'         => $errorUri,
-        )));
+            'error_uri'         => $errorUri
+        );
+
+        if ($queryStr = http_build_query(array_filter($query))) {
+            $url .= (false === strpos($url, '?') ? '?' : '&').$queryStr;
+        }
+
         $this->headers->set('Location', $url);
     }
  }
