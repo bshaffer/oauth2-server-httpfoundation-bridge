@@ -16,7 +16,7 @@ Installation
 ```
 {
     "require": {
-        "bshaffer/oauth2-server-httpfoundation-bridge": "v0.9",
+        "bshaffer/oauth2-server-httpfoundation-bridge": "v1.0",
         ...
     },
     ...
@@ -25,8 +25,8 @@ Installation
 
 And then run `composer.phar install`
 
-> Match tags with the [oauth2-server-php](https://github.com/bshaffer/oauth2-server) library when possible.
-> [`v0.9`](https://github.com/bshaffer/oauth2-server-httpfoundation-bridge/tree/v0.9) is the latest tag.
+> Match tags with the [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php) library when possible.
+> [`v1.0`](https://github.com/bshaffer/oauth2-server-httpfoundation-bridge/tree/v1.0) is the latest tag.
 
 ## Creating the request
 
