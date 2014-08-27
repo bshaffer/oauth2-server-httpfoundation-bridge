@@ -35,11 +35,11 @@ use OAuth2\ResponseInterface;
         }
     }
 
-    public function setError($statusCode, $name, $description = null, $uri = null)
+    public function setError($statusCode, $error, $description = null, $uri = null)
     {
         $this->setStatusCode($statusCode);
         $this->addParameters(array_filter(array(
-            'error'             => $name,
+            'error'             => $error,
             'error_description' => $description,
             'error_uri'         => $uri,
         )));

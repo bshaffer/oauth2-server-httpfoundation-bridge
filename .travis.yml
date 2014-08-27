@@ -8,6 +8,4 @@ php:
 script:
 - phpunit
 before_script:
-- cp phpunit.xml.dist phpunit.xml
-- composer require symfony/http-foundation:dev-master
-- composer require bshaffer/oauth2-server-php:dev-master
+- composer install

@@ -10,18 +10,6 @@ use OAuth2\RequestInterface;
  */
  class Request extends BaseRequest implements RequestInterface
  {
-    public static function createFromGlobals()
-    {
-        $request = parent::createFromGlobals();
-        // fix for Authorization header (see https://github.com/symfony/symfony/issues/7170)
-        $headers = getallheaders();
-        if (isset($headers['Authorization'])) {
-            $request->headers->set('Authorization', $headers['Authorization']);
-        }
-
-        return $request;
-    }
-
     public function query($name, $default = null)
     {
         return $this->query->get($name, $default);
@@ -75,12 +63,13 @@ use OAuth2\RequestInterface;
      * PHP does not include HTTP_AUTHORIZATION in the $_SERVER array, so this header is missing.
      * We retrieve it from apache_request_headers()
      *
+     * @see https://github.com/symfony/symfony/issues/7170
+     *
      * @param HeaderBag $headers
      */
     private static function fixAuthHeader(\Symfony\Component\HttpFoundation\HeaderBag $headers)
     {
-        if (!$headers->has('Authorization') && function_exists('apache_request_headers')) 
-        {
+        if (!$headers->has('Authorization') && function_exists('apache_request_headers')) {
             $all = apache_request_headers();
             if (isset($all['Authorization']))
             {
