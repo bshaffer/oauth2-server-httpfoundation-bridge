@@ -10,6 +10,18 @@ use OAuth2\RequestInterface;
  */
  class Request extends BaseRequest implements RequestInterface
  {
+    public static function createFromGlobals()
+    {
+        $request = parent::createFromGlobals();
+        // fix for Authorization header (see https://github.com/symfony/symfony/issues/7170)
+        $headers = getallheaders();
+        if (isset($headers['Authorization'])) {
+            $request->headers->set('Authorization', $headers['Authorization']);
+        }
+
+        return $request;
+    }
+
     public function query($name, $default = null)
     {
         return $this->query->get($name, $default);
