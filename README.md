@@ -1,12 +1,14 @@
 oauth2-server-httpfoundation-bridge
 ===================================
 
-A bridge to HttpFoundation for oauth2-server-php.
+A bridge to [HttpFoundation](https://github.com/symfony/httpfoundation) for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php).
 
-oauth2-server-httpfoundation-bridge is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
-which returns HttpFoundation\Response instead of OAuth2\Response, and uses HttpFoundation\Request instead of OAuth2\Request.
-If you are integrating oauth2 into a Silex, Symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using HttpFoundation), this will make your
-application much cleaner
+[![Build Status](https://secure.travis-ci.org/bshaffer/oauth2-server-bundle.png)](http://travis-ci.org/bshaffer/oauth2-server-bundle)
+
+`oauth2-server-httpfoundation-bridge` is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
+which returns `Symfony\Component\HttpFoundation\Response` instead of `OAuth2\Response`, and uses `Symfony\Component\HttpFoundation\Request` instead of `OAuth2\Request`.
+
+If you are integrating OAuth2 into a Silex, Symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using `HttpFoundation`), this will make your application much cleaner
 
 Installation
 ------------
@@ -26,7 +28,7 @@ Installation
 And then run `composer.phar install`
 
 > Match tags with the [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php) library when possible.
-> [`v1.0`](https://github.com/bshaffer/oauth2-server-httpfoundation-bridge/tree/v1.0) is the latest tag.
+> [`v1.1`](https://github.com/bshaffer/oauth2-server-httpfoundation-bridge/tree/v1.1) is the latest tag.
 
 ## Creating the request
 
