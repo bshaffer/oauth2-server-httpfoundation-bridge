@@ -10,4 +10,4 @@ script:
 before_script:
 - cp phpunit.xml.dist phpunit.xml
 - composer require symfony/http-foundation:dev-master
-- composer require bshaffer/oauth2-server-php
+- composer require bshaffer/oauth2-server-php:dev-master
