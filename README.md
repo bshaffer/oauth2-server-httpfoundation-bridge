@@ -35,29 +35,35 @@ And then run `composer.phar install`
 Creating the request object is the same as before, except now you use the
 `OAuth2\HttpFoundationBridge\Request` class:
 
-    $request = OAuth2\HttpFoundationBridge\Request::createFromGlobals();
-    $app->run($request);
+```php
+$request = OAuth2\HttpFoundationBridge\Request::createFromGlobals();
+$app->run($request);
+```
 
 The Request object is now compatible with both HttpFoundation *and* oauth2-server-php
 
-    // getBaseUrl is unique to HttpFoundation
-    $baseUrl = $request->getBaseUrl();
+```php
+// getBaseUrl is unique to HttpFoundation
+$baseUrl = $request->getBaseUrl();
 
-    // call oauth server
-    $server->grantAccessToken($request);
+// call oauth server
+$server->grantAccessToken($request);
+```
 
 If the HttpFoundation request already exists, you can use the static `createFromRequest`
 function to build the OAuth2\HttpFoundationBridge\Request instance:
 
-    use OAuth2\HttpFoundationBridge\Request as BridgeRequest;
+```php
+use OAuth2\HttpFoundationBridge\Request as BridgeRequest;
 
-    // in your controller layer, the $request object is passed in
-    public function execute(Request $request)
-    {
-        //... (instantiate server/response objects)
-        $bridgeRequest = BridgeRequest::createFromRequest($request);
-        $server->grantAccessToken($bridgeRequest, $response);
-    }
+// in your controller layer, the $request object is passed in
+public function execute(Request $request)
+{
+    //... (instantiate server/response objects)
+    $bridgeRequest = BridgeRequest::createFromRequest($request);
+    $server->grantAccessToken($bridgeRequest, $response);
+}
+```
 
 ## Creating the response
 
@@ -65,25 +71,25 @@ The `OAuth2\HttpFoundationBridge\Response` object extends `Symfony\Component\Htt
 and implements `OAuth2\ResponseInterface`, allowing you to pass this in and return it from your controllers.
 In Symfony and Silex, this will be all that is needed to integrate the server:
 
-    use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
+```php
+use OAuth2\HttpFoundationBridge\Response as BridgeResponse;
 
-    // in your controller layer, the $request object is passed in
-    public function execute(Request $request)
-    {
-        //... (instantiate server/response objects)
-        $response = new BridgeResponse();
-        return $server->handleTokenRequest($request, $response);
-    }
+// in your controller layer, the $request object is passed in
+public function execute(Request $request)
+{
+    //... (instantiate server/response objects)
+    $response = new BridgeResponse();
+    return $server->handleTokenRequest($request, $response);
+}
+```
 
 > Note: this object will return JSON.  Implement your own class using `OAuth2\ResponseInterface` to support
 > a different content-type.
 
 ## Examples
 
- * OAuth2 Request
-   * [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/web/index.php#L47)
- * OAuth2 Response
-   * [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/src/OAuth2Demo/Server/Controllers/Token.php#L26)
+ * OAuth2 Request - [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/web/index.php#L47)
+ * OAuth2 Response - [Silex Integration](https://github.com/bshaffer/oauth2-demo-php/blob/master/src/OAuth2Demo/Server/Controllers/Token.php#L26)
 
 Contact
 -------
