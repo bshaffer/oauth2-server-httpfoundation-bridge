@@ -1,0 +1,13 @@
+language: php
+php:
+- 5.3
+- 5.4
+- 5.5
+- 5.6
+- hhvm
+script:
+- phpunit
+before_script:
+- cp phpunit.xml.dist phpunit.xml
+- composer require symfony/http-foundation:dev-master
+- composer require bshaffer/oauth2-server-php
