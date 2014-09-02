@@ -67,12 +67,11 @@ use OAuth2\RequestInterface;
      *
      * @param HeaderBag $headers
      */
-    private static function fixAuthHeader(\Symfony\Component\HttpFoundation\HeaderBag $headers)
+    protected static function fixAuthHeader(\Symfony\Component\HttpFoundation\HeaderBag $headers)
     {
         if (!$headers->has('Authorization') && function_exists('apache_request_headers')) {
             $all = apache_request_headers();
-            if (isset($all['Authorization']))
-            {
+            if (isset($all['Authorization'])) {
                 $headers->set('Authorization', $all['Authorization']);
             }
         }
