@@ -35,34 +35,63 @@ use OAuth2\ResponseInterface;
         }
     }
 
-    public function setError($statusCode, $error, $description = null, $uri = null)
+    public function setError($statusCode, $error, $errorDescription = null, $errorUri = null)
     {
-        $this->setStatusCode($statusCode);
-        $this->addParameters(array_filter(array(
-            'error'             => $error,
-            'error_description' => $description,
-            'error_uri'         => $uri,
-        )));
-    }
-
-    public function setRedirect($statusCode = 302, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
-    {
-        $this->setStatusCode($statusCode);
-
-        $params = array_filter(array(
-            'state'             => $state,
-            'error'             => $error,
+        $parameters = array(
+            'error' => $error,
             'error_description' => $errorDescription,
-            'error_uri'         => $errorUri,
-        ));
+        );
 
-        if ($params) {
-            // add the params to the URL
-            $parts = parse_url($url);
-            $sep = isset($parts['query']) && count($parts['query']) > 0 ? '&' : '?';
-            $url .= $sep . http_build_query($params);
+        if (!is_null($errorUri)) {
+            if (strlen($errorUri) > 0 && $errorUri[0] == '#') {
+                // we are referencing an oauth bookmark (for brevity)
+                $errorUri = 'http://tools.ietf.org/html/rfc6749' . $errorUri;
+            }
+            $parameters['error_uri'] = $errorUri;
         }
 
-        $this->headers->set('Location', $url);
+        $httpHeaders = array(
+            'Cache-Control' => 'no-store'
+        );
+
+        $this->setStatusCode($statusCode);
+        $this->addParameters($parameters);
+        $this->addHttpHeaders($httpHeaders);
+
+        if (!$this->isClientError() && !$this->isServerError()) {
+            throw new \InvalidArgumentException(sprintf('The HTTP status code is not an error ("%s" given).', $statusCode));
+        }
+    }
+
+    public function setRedirect($statusCode, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
+    {
+        if (empty($url)) {
+            throw new \InvalidArgumentException('Cannot redirect to an empty URL.');
+        }
+                            
+        $parameters = array();
+
+        if (!is_null($state)) {
+            $parameters['state'] = $state;
+        }
+
+        if (!is_null($error)) {
+            $this->setError(400, $error, $errorDescription, $errorUri);
+        }
+        $this->setStatusCode($statusCode);
+        $this->addParameters($parameters);
+
+        if ($this->content && $data = json_decode($this->content, true)) {
+            // add parameters to URL redirection
+            $parts = parse_url($url);
+            $sep = isset($parts['query']) && count($parts['query']) > 0 ? '&' : '?';
+            $url .= $sep . http_build_query($data);
+        }
+
+        $this->addHttpHeaders(array('Location' => $url));
+
+        if (!$this->isRedirection()) {
+            throw new \InvalidArgumentException(sprintf('The HTTP status code is not a redirect ("%s" given).', $statusCode));
+        }
     }
  }
