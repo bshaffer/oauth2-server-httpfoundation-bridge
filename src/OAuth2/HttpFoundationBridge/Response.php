@@ -38,6 +38,16 @@ use OAuth2\ResponseInterface;
     public function setError($statusCode, $error, $description = null, $uri = null)
     {
         $this->setStatusCode($statusCode);
+
+        if (!is_null($uri)) {
+            if (strlen($uri) > 0 && $uri[0] == '#') {
+                 // we are referencing an oauth bookmark (for brevity)
+                 $uri = 'http://tools.ietf.org/html/rfc6749' . $uri;
+             }
+        }
+
+        $this->headers->set('Cache-Control', 'no-store');
+
         $this->addParameters(array_filter(array(
             'error'             => $error,
             'error_description' => $description,
@@ -49,18 +59,19 @@ use OAuth2\ResponseInterface;
     {
         $this->setStatusCode($statusCode);
 
-        $params = array_filter(array(
-            'state'             => $state,
-            'error'             => $error,
-            'error_description' => $errorDescription,
-            'error_uri'         => $errorUri,
-        ));
+        if (!is_null($state)) {
+            $this->addParameters(array('state' => $state));
+        }
 
-        if ($params) {
-            // add the params to the URL
+        if (!is_null($error)) {
+            $this->setError($statusCode, $error, $errorDescription, $errorUri);
+        }
+
+        if ($this->content && $data = json_decode($this->content, true)) {
+            // add parameters to URL redirection
             $parts = parse_url($url);
             $sep = isset($parts['query']) && count($parts['query']) > 0 ? '&' : '?';
-            $url .= $sep . http_build_query($params);
+            $url .= $sep . http_build_query($data);
         }
 
         $this->headers->set('Location', $url);
