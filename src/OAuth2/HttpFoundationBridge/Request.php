@@ -4,6 +4,7 @@ namespace OAuth2\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\Request as BaseRequest;
 use OAuth2\RequestInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  *
@@ -38,6 +39,12 @@ use OAuth2\RequestInterface;
     public static function createFromRequest(BaseRequest $request)
     {
         return new static($request->query->all(), $request->request->all(), $request->attributes->all(), $request->cookies->all(), $request->files->all(), $request->server->all(), $request->getContent());
+    }
+
+    public static function createFromRequestStack(RequestStack $request)
+    {
+        $request = $request->getCurrentRequest();
+        return self::createFromRequest($request);
     }
     
     /**
