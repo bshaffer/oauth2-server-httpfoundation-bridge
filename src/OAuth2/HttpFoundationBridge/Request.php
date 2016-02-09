@@ -10,6 +10,12 @@ use OAuth2\RequestInterface;
  */
  class Request extends BaseRequest implements RequestInterface
  {
+    public function initialize(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
+    {
+        parent::initialize($query, $request, $attributes, $cookies, $files, $server, $content);
+        self::fixAuthHeader($this->headers);
+    }
+
     public function query($name, $default = null)
     {
         return $this->query->get($name, $default);
