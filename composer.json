@@ -19,10 +19,5 @@
     },
     "autoload": {
         "psr-0": { "OAuth2\\HttpFoundationBridge": "src/" }
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-develop": "dev-master"
-        }
     }
 }
