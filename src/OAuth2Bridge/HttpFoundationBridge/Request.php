@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth2\HttpFoundationBridge;
+namespace OAuth2Bridge\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\Request as BaseRequest;
 use OAuth2\RequestInterface;

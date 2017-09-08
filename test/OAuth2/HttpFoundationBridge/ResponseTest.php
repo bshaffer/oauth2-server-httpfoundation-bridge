@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth2\HttpFoundationBridge;
+namespace OAuth2Bridge\HttpFoundationBridge;
 
 class ResponseTest extends \PHPUnit_Framework_TestCase
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace OAuth2\HttpFoundationBridge;
+namespace OAuth2Bridge\HttpFoundationBridge;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use OAuth2\ResponseInterface;
