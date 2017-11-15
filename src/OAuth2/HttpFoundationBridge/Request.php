@@ -11,6 +11,22 @@ use Symfony\Component\HttpFoundation\RequestStack;
  */
  class Request extends BaseRequest implements RequestInterface
  {
+    /**
+     * Initializes the request with values given as parameters.
+     * Overwrite to fix an apache header bug. Read more here:
+     * http://stackoverflow.com/questions/11990388/request-headers-bag-is-missing-authorization-header-in-symfony-2%E2%80%94
+     *
+     * @return Request A new request
+     *
+     * @api
+     */
+    public function initialize(array $query = array(), array $request = array(), array $attributes = array(), array $cookies = array(), array $files = array(), array $server = array(), $content = null)
+    {
+        parent::initialize($query, $request, $attributes, $cookies, $files, $server, $content);
+        // fix the bug.
+        self::fixAuthHeader($this->headers);
+    }
+
     public function query($name, $default = null)
     {
         return $this->query->get($name, $default);
@@ -47,23 +63,9 @@ use Symfony\Component\HttpFoundation\RequestStack;
         return self::createFromRequest($request);
     }
     
-    /**
-     * Creates a new request with values from PHP's super globals. 
-     * Overwrite to fix an apache header bug. Read more here:
-     * http://stackoverflow.com/questions/11990388/request-headers-bag-is-missing-authorization-header-in-symfony-2%E2%80%94
-     *
-     * @return Request A new request
-     *
-     * @api
-     */
     public static function createFromGlobals()
     {
-        $request = parent::createFromGlobals();
-        
-        //fix the bug.
-        self::fixAuthHeader($request->headers);
-        
-        return $request;
+        return parent::createFromGlobals();
     }
     
     /**
