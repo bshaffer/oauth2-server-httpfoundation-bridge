@@ -2,7 +2,9 @@
 
 namespace OAuth2\HttpFoundationBridge;
 
-class ResponseTest extends \PHPUnit_Framework_TestCase
+use PHPUnit\Framework\TestCase;
+
+class ResponseTest extends TestCase
 {
     /** @dataProvider provideAddParameters */
     public function testAddParameters($expected, $parameters, $content = null)
