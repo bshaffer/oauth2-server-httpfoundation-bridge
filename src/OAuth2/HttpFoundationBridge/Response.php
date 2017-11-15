@@ -59,7 +59,7 @@ use OAuth2\ResponseInterface;
         if ($params) {
             // add the params to the URL
             $parts = parse_url($url);
-            $sep = isset($parts['query']) && count($parts['query']) > 0 ? '&' : '?';
+            $sep = isset($parts['query']) ? '&' : '?'; //If query part already exits & chaining is required
             $url .= $sep . http_build_query($params);
         }
 
