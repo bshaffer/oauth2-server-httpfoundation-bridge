@@ -1,5 +1,5 @@
 {
-	"name" : "bshaffer/oauth2-server-httpfoundation-bridge",
+	"name" : "reb3r/oauth2-server-httpfoundation-bridge",
 	"description" : "A bridge to HttpFoundation for oauth2-server-php",
 	"keywords" : [
 		"oauth",
@@ -13,11 +13,14 @@
 			"name" : "Brent Shaffer",
 			"email" : "bshafs@gmail.com",
 			"homepage" : "http://brentertainment.com"
+		}, {
+			"name" : "Christian Reber",
+			"email" : "chris@creber.de"
 		}
 	],
 	"homepage" : "http://github.com/bshaffer/oauth2-server-httpfoundation-bridge",
 	"require" : {
-		"php" : ">=5.6.0",
+		"php" : ">=7.0.0",
 		"symfony/http-foundation" : "~3.3",
 		"bshaffer/oauth2-server-php" : ">=0.9"
 	},
@@ -28,5 +31,6 @@
 		"psr-0" : {
 			"OAuth2\\HttpFoundationBridge" : "src/"
 		}
-	}
+	},
+	"minimum-stability" : "stable"
 }
