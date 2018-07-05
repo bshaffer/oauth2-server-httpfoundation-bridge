@@ -8,9 +8,9 @@ class RequestTest extends TestCase
 {
     public function testFixAuthHeader()
     {
-    	require_once __DIR__ .'/../../includes/apache_request_headers.php';
+        require_once __DIR__ .'/../../includes/apache_request_headers.php';
 
-    	\set_apache_request_headers(array('Authorization' => 'Bearer xyz'));
+        \set_apache_request_headers(array('Authorization' => 'Bearer xyz'));
 
         $request = Request::createFromGlobals();
 
