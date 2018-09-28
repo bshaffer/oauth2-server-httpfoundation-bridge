@@ -61,7 +61,7 @@ use Symfony\Component\HttpFoundation\RequestStack;
         $request = parent::createFromGlobals();
         
         //fix the bug.
-        self::fixAuthHeader($request->headers);
+        static::fixAuthHeader($request->headers);
         
         return $request;
     }
