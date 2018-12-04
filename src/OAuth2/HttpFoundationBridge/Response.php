@@ -8,7 +8,7 @@ use OAuth2\ResponseInterface;
 /**
  *
  */
- class Response extends JsonResponse implements ResponseInterface
+class Response extends JsonResponse implements ResponseInterface
  {
     public function addParameters(array $parameters)
     {
@@ -73,4 +73,4 @@ use OAuth2\ResponseInterface;
     {
         return parent::setStatusCode($statusCode);
     }
- }
+}
