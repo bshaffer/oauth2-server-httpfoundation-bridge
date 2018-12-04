@@ -26,6 +26,7 @@ class Request extends BaseRequest implements RequestInterface
         // fix the bug.
         static::fixAuthHeader($this->headers);
     }
+
     public function query($name, $default = null)
     {
         return $this->query->get($name, $default);
