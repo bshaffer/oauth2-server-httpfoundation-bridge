@@ -21,7 +21,7 @@
 	"homepage" : "http://github.com/bshaffer/oauth2-server-httpfoundation-bridge",
 	"require" : {
 		"php" : ">=7.0.0",
-		"symfony/http-foundation" : "~3.3",
+		"symfony/http-foundation" : ">=3.3",
 		"reb3r/oauth2-server-php" : ">=0.9"
 	},
 	"require-dev" : {
