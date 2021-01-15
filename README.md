@@ -1,14 +1,14 @@
 oauth2-server-httpfoundation-bridge
 ===================================
 
-A bridge to [HttpFoundation](https://github.com/symfony/httpfoundation) for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php).
+A bridge to [HttpFoundation](https://github.com/symfony/httpfoundation) for [oauth2-server-php](https://github.com/reb3r/oauth2-server-php).
 
-[![Build Status](https://secure.travis-ci.org/bshaffer/oauth2-server-httpfoundation-bridge.png)](http://travis-ci.org/bshaffer/oauth2-server-httpfoundation-bridge)
+[![Build Status](https://travis-ci.com/reb3r/oauth2-server-httpfoundation-bridge.svg?branch=master)](https://travis-ci.com/reb3r/oauth2-server-httpfoundation-bridge)
 
 `oauth2-server-httpfoundation-bridge` is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
 which returns `Symfony\Component\HttpFoundation\Response` instead of `OAuth2\Response`, and uses `Symfony\Component\HttpFoundation\Request` instead of `OAuth2\Request`.
 
-If you are integrating OAuth2 into a Silex, Symfony, or [Laravel 4](http://four.laravel.com) app, (or any app using `HttpFoundation`), this will make your application much cleaner
+If you are integrating OAuth2 into a Silex, Symfony, or [Laravel](http://www.laravel.com) app, (or any app using `HttpFoundation`), this will make your application much cleaner
 
 Installation
 ------------
@@ -28,7 +28,7 @@ Installation
 And then run `composer.phar install`
 
 > Match tags with the [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php) library when possible.
-> [`v1.1`](https://github.com/bshaffer/oauth2-server-httpfoundation-bridge/tree/v1.1) is the latest tag.
+> [`v2.2`](https://github.com/reb3r/oauth2-server-httpfoundation-bridge/tree/v2.2) is the latest tag.
 
 ## Creating the request
 
@@ -94,4 +94,9 @@ public function execute(Request $request)
 Contact
 -------
 
-Please contact Brent Shaffer (bshafs <at> gmail <dot> com) for more information
+Please contact Christian Reber (christian.reber <at> fujitsu <dot> com) for more information
+    
+Acknowledgements
+-------
+
+Very big "Thank you" goes to Brent Shaffer (https://github.com/bshaffer) for the original version which I forked.
