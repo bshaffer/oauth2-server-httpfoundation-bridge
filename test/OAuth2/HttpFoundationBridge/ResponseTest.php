@@ -34,7 +34,7 @@ class ResponseTest extends TestCase
         $response = new Response();
         $response->addHttpHeaders($headers);
 
-        $this->assertContains($expected, (string) $response->headers);
+        $this->assertStringContainsString($expected, (string) $response->headers);
     }
 
     public function provideAddHttpHeaders()

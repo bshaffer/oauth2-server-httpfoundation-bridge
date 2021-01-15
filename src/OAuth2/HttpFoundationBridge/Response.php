@@ -45,7 +45,7 @@ class Response extends JsonResponse implements ResponseInterface
         )));
     }
 
-    public function setRedirect($statusCode = 302, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
+    public function setRedirect($statusCode, $url, $state = null, $error = null, $errorDescription = null, $errorUri = null)
     {
         $this->setStatusCode($statusCode);
 
