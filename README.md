@@ -3,8 +3,6 @@ oauth2-server-httpfoundation-bridge
 
 A bridge to [HttpFoundation](https://github.com/symfony/httpfoundation) for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php).
 
-[![Build Status](https://secure.travis-ci.org/bshaffer/oauth2-server-httpfoundation-bridge.png)](http://travis-ci.org/bshaffer/oauth2-server-httpfoundation-bridge)
-
 `oauth2-server-httpfoundation-bridge` is a wrapper for [oauth2-server-php](https://github.com/bshaffer/oauth2-server-php)
 which returns `Symfony\Component\HttpFoundation\Response` instead of `OAuth2\Response`, and uses `Symfony\Component\HttpFoundation\Request` instead of `OAuth2\Request`.
 
