@@ -52,11 +52,9 @@ class Request extends BaseRequest implements RequestInterface
      * Overwrite to fix an apache header bug. Read more here:
      * http://stackoverflow.com/questions/11990388/request-headers-bag-is-missing-authorization-header-in-symfony-2%E2%80%94
      *
-     * @return Request A new request
-     *
      * @api
      */
-    public static function createFromGlobals()
+    public static function createFromGlobals(): static
     {
         $request = parent::createFromGlobals();
 
